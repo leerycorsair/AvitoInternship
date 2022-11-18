@@ -60,6 +60,7 @@ Avito Backend Go Task
 **Также были реализованны:**
 
 :heavy_check_mark: Метод перевода средств между пользователями.
+
 :heavy_check_mark: Логи.
 
 
