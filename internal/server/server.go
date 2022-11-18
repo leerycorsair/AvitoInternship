@@ -8,6 +8,7 @@ import (
 	"AvitoInternship/internal/controllers/users_controller"
 
 	"AvitoInternship/internal/managers/orders_manager"
+	"AvitoInternship/internal/managers/reports_manager"
 	"AvitoInternship/internal/managers/users_manager"
 
 	"AvitoInternship/internal/handlers/reports_handler"

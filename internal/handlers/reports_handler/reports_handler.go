@@ -8,6 +8,8 @@ import (
 	"AvitoInternship/internal/controllers/orders_controller"
 	"AvitoInternship/internal/controllers/users_controller"
 
+	"AvitoInternship/internal/managers/reports_manager"
+
 	"AvitoInternship/internal/models"
 	"AvitoInternship/internal/tools"
 
@@ -16,10 +18,10 @@ import (
 
 type ReportsHandler struct {
 	l *logrus.Entry
-	m reports_manager.ReportManagerInterface
+	m reports_manager.ReportsManagerInterface
 }
 
-func CreateReportsHandler(m reports_manager.ReportManagerInterface) *ReportsHandler {
+func CreateReportsHandler(m reports_manager.ReportsManagerInterface) *ReportsHandler {
 	contextLogger := logrus.WithFields(logrus.Fields{})
 	logrus.SetReportCaller(false)
 	logrus.SetFormatter(&logrus.TextFormatter{PadLevelText: false, DisableLevelTruncation: false})
