@@ -14,7 +14,7 @@ type OrdersController struct {
 	repo  orders_repository.OrdersRepoInterface
 }
 
-func CreateNewOrdersController(repo orders_repository.OrdersRepoInterface) *OrdersController {
+func CreateOrdersController(repo orders_repository.OrdersRepoInterface) *OrdersController {
 	return &OrdersController{mutex: sync.RWMutex{}, repo: repo}
 }
 

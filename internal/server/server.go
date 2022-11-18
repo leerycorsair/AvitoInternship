@@ -12,6 +12,7 @@ import (
 	"AvitoInternship/internal/handlers/services_handler"
 	"AvitoInternship/internal/handlers/users_handler"
 
+	"AvitoInternship/internal/repositories/orders_repository"
 	"AvitoInternship/internal/repositories/users_repository"
 
 	"AvitoInternship/internal/middleware"
@@ -40,7 +41,7 @@ func (s *Server) Start() error {
 	transactionsDB := tools.PostgreConnect(s.c.RepConfig)
 
 	usersRepo := users_repository.CreateUsersRepo(usersDB)
-	ordersRepo := orders_repo.CreateOrdersRepo(ordersDB)
+	ordersRepo := orders_repository.CreateOrdersRepo(ordersDB)
 	transactionsRepo := transactions_repo.CreateTransactionsRepo(transactionsDB)
 
 	usersController := users_controller.CreateUsersController(usersRepo)

@@ -98,9 +98,9 @@ func (h *ServicesHandler) AcceptService(w http.ResponseWriter, r *http.Request) 
 	case orders_controller.OrderNotFound:
 		statusCode = http.StatusNotFound
 		handleMessage = fmt.Sprintf("%v", orders_controller.OrderNotFound)
-	case orders_controller.WrongStateError:
+	case orders_controller.WrongStatusError:
 		statusCode = http.StatusForbidden
-		handleMessage = fmt.Sprintf("%v", orders_controller.WrongStateError)
+		handleMessage = fmt.Sprintf("%v", orders_controller.WrongStatusError)
 	default:
 		statusCode = http.StatusInternalServerError
 		handleMessage = fmt.Sprintf("Internal Server Error")
@@ -140,9 +140,9 @@ func (h *ServicesHandler) CancelService(w http.ResponseWriter, r *http.Request) 
 	case orders_controller.OrderNotFound:
 		statusCode = http.StatusNotFound
 		handleMessage = fmt.Sprintf("%v", orders_controller.OrderNotFound)
-	case orders_controller.WrongStateError:
+	case orders_controller.WrongStatusError:
 		statusCode = http.StatusForbidden
-		handleMessage = fmt.Sprintf("%v", orders_controller.WrongStateError)
+		handleMessage = fmt.Sprintf("%v", orders_controller.WrongStatusError)
 	default:
 		statusCode = http.StatusInternalServerError
 		handleMessage = fmt.Sprintf("Internal Server Error")

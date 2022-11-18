@@ -11,7 +11,7 @@ create table if not exists orders
     user_id int,
     service_id int,
     order_id int,
-    price float,
+    value float,
     created_at datetime,
     comments varchar(255),
     status int
