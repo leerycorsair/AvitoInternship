@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"AvitoInternship/internal/controllers/users_controller"
+	"AvitoInternship/internal/managers/orders_manager"
 	"AvitoInternship/internal/models"
 
 	"github.com/sirupsen/logrus"

@@ -13,7 +13,7 @@ type Order struct {
 	UserId    int
 	ServiceId int
 	OrderId   int
-	Price     float64
+	Value     float64
 	CreatedAt time.Time
 	Comments  string
 	Status    int

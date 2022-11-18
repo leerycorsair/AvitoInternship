@@ -1,20 +1,22 @@
 package users_manager
 
 import (
+	"AvitoInternship/internal/controllers/transactions_controller"
 	"AvitoInternship/internal/controllers/users_controller"
+
 	"fmt"
 )
 
 type UsersManager struct {
 	usersController        users_controller.UsersControllerInterface
-	transactionsController tc.TransactionsControllerInterface
+	transactionsController transactions_controller.TransactionsControllerInterface
 }
 
-func CreateUsersManager(usersController users_controller.UsersControllerInterface,
-	transactionsController tc.TransactionsControllerInterface) *UsersManager {
+func CreateUsersManager(uc users_controller.UsersControllerInterface,
+	tc transactions_controller.TransactionsControllerInterface) *UsersManager {
 	return &UsersManager{
-		usersController:        usersController,
-		transactionsController: transactionsController,
+		usersController:        uc,
+		transactionsController: tc,
 	}
 }
 
