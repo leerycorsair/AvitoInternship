@@ -2,7 +2,9 @@ package reports_manager
 
 import (
 	"AvitoInternship/internal/controllers/orders_controller"
+	"AvitoInternship/internal/controllers/reports_controller"
 	"AvitoInternship/internal/controllers/transactions_controller"
+
 	"AvitoInternship/internal/controllers/users_controller"
 	"AvitoInternship/internal/models"
 )
@@ -25,7 +27,7 @@ func CreateReportsManager(uc users_controller.UsersControllerInterface, oc order
 func (m *ReportsManager) GetFinanceReport(month, year int, url string) error {
 	dataToReport, err := m.ordersController.GetFinanceReports(month, year)
 	if err == nil {
-		reportController := report_controller.CreateNewReportController()
+		reportController := reports_controller.CreateNewReportsController()
 		err = reportController.CreateFinancialReportCSV(dataToReport, url)
 	}
 	return err
