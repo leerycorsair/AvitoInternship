@@ -18,11 +18,11 @@ type UsersHandler struct {
 	m users_manager.UsersManagerInterface
 }
 
-func CreateUsersHandler(newManager users_manager.UsersManagerInterface) *UsersHandler {
+func CreateUsersHandler(m users_manager.UsersManagerInterface) *UsersHandler {
 	contextLogger := logrus.WithFields(logrus.Fields{})
 	logrus.SetReportCaller(false)
 	logrus.SetFormatter(&logrus.TextFormatter{PadLevelText: false, DisableLevelTruncation: false})
-	return &UsersHandler{l: contextLogger, m: newManager}
+	return &UsersHandler{l: contextLogger, m: m}
 }
 
 func (h *UsersHandler) AddBalance(w http.ResponseWriter, r *http.Request) {

@@ -22,6 +22,27 @@ type UserReportResponseMessage struct {
 	AllTransactions []Transaction `json:"transactions"`
 }
 
+type AcceptServiceMessage struct {
+	UserID    int `json:"user_id"`
+	OrderID   int `json:"order_id"`
+	ServiceID int `json:"service_id"`
+}
+
+type ReserveServiceMessage struct {
+	UserID    int     `json:"user_id"`
+	OrderID   int     `json:"order_id"`
+	ServiceID int     `json:"service_id"`
+	Value     float64 `json:"value"`
+	Comments  string  `json:"comments"`
+}
+
+type CancelServiceMessage struct {
+	UserID    int    `json:"user_id"`
+	OrderID   int    `json:"order_id"`
+	ServiceID int    `json:"service_id"`
+	Comments  string `json:"comments"`
+}
+
 func SendShortResponse(w http.ResponseWriter, code int, comments string) {
 	var msg = ShortResponseMessage{comments}
 	result, err := json.Marshal(msg)
@@ -40,7 +61,7 @@ func BalanceResponse(w http.ResponseWriter, balance float64, comments string) {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(result)
 	} else {
-		SendShortResponse(w, http.StatusInternalServerError, "internal server problems")
+		SendShortResponse(w, http.StatusInternalServerError, "Internal Server Problems")
 	}
 }
 
@@ -51,7 +72,7 @@ func FinanceReportResponse(w http.ResponseWriter, fileURL string) {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(result)
 	} else {
-		SendShortResponse(w, http.StatusInternalServerError, "internal server problems")
+		SendShortResponse(w, http.StatusInternalServerError, "Internal Server Problems")
 	}
 }
 
@@ -62,6 +83,6 @@ func UserReportResponse(w http.ResponseWriter, allTransactions []Transaction) {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write(result)
 	} else {
-		SendShortResponse(w, http.StatusInternalServerError, "internal server problems")
+		SendShortResponse(w, http.StatusInternalServerError, "Internal Server Problems")
 	}
 }

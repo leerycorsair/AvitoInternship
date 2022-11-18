@@ -3,6 +3,7 @@ package server
 import (
 	"AvitoInternship/config"
 	"AvitoInternship/internal/controllers/users_controller"
+	"AvitoInternship/internal/handlers/services_handler"
 	"AvitoInternship/internal/handlers/users_handler"
 	"AvitoInternship/internal/managers/users_manager"
 	"AvitoInternship/internal/repositories/users_repository"
@@ -45,8 +46,8 @@ func (s *Server) Start() error {
 	reportsManager := reports_manager.CreateReportsManager(usersController, ordersController, transactionsController)
 
 	usersHandler := users_handler.CreateUsersHandler(usersManager)
-	servicesHandler := services_handler.CreateServiceHandler(ordersManager)
-	reportsHandler := reports_handler.CreateReportHandler(reportsManager)
+	servicesHandler := services_handler.CreateServicesHandler(ordersManager)
+	reportsHandler := reports_handler.CreateReportsHandler(reportsManager)
 
 	router.HandleFunc("/users", usersHandler.GetBalance).Methods("GET")
 	router.HandleFunc("/users/add", usersHandler.AddBalance).Methods("POST")
