@@ -1,6 +1,8 @@
 package users_handler
 
 import (
+	"AvitoInternship/internal/controllers/users_controller"
+	"AvitoInternship/internal/managers/users_manager"
 	"AvitoInternship/internal/models"
 	"encoding/json"
 	"fmt"
