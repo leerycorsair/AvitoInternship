@@ -2,11 +2,8 @@
 create table if not exists users
 ( 
     id serial,
-    available_balance float,
-    reserved_balance float 
+    balance float,
 );
-
-create type order_status as enum ('pending', 'released', 'cancelled');
 
 create table if not exists orders
 (
@@ -17,5 +14,17 @@ create table if not exists orders
     price float,
     created_at datetime,
     comments varchar(255),
-    status order_status
+    status int
 );
+
+create table if not exists transactions
+(
+    id serial,
+    transaction_id int,
+    user_id int,
+    transaction_type int,
+    value float,
+    created_at datetime,
+    action_comments varchar(255),
+    add_comments varchar(255)
+)
