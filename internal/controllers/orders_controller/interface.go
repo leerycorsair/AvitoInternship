@@ -9,7 +9,7 @@ var (
 	OrderNotFound       = errors.New("Order Not Found")
 	OrderIsAlreadyExist = errors.New("Order Is Already Exist")
 	GetOrderError       = errors.New("Bad Order Get")
-	WrongStateError     = errors.New("State Isn't Right To Change Order State")
+	WrongStatusError    = errors.New("Status Isn't Right To Change Order Status")
 	BadMonthError       = errors.New("Bad Month")
 	BadYearError        = errors.New("Bad Year")
 )

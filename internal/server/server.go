@@ -2,6 +2,7 @@ package server
 
 import (
 	"AvitoInternship/config"
+
 	"AvitoInternship/internal/controllers/orders_controller"
 	"AvitoInternship/internal/controllers/users_controller"
 
@@ -10,6 +11,7 @@ import (
 
 	"AvitoInternship/internal/handlers/services_handler"
 	"AvitoInternship/internal/handlers/users_handler"
+
 	"AvitoInternship/internal/repositories/users_repository"
 
 	"AvitoInternship/internal/middleware"

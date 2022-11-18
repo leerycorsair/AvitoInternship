@@ -14,8 +14,8 @@ func CreateUsersController(repo users_repository.UsersRepoInterface) *UsersContr
 	return &UsersController{mutex: sync.RWMutex{}, repo: repo}
 }
 
-func (m *UsersController) CheckUserIsExist(userID int) (result bool, err error) {
-	_, isUserExistErr := m.repo.GetCurrentBalance(userID)
+func (c *UsersController) CheckUserIsExist(userID int) (result bool, err error) {
+	_, isUserExistErr := c.repo.GetCurrentBalance(userID)
 	switch isUserExistErr {
 	case users_repository.UserNotExist:
 		result = false
@@ -27,27 +27,27 @@ func (m *UsersController) CheckUserIsExist(userID int) (result bool, err error) 
 	return result, err
 }
 
-func (m *UsersController) CreateNewUser(userID int) error {
-	m.mutex.Lock()
-	isUserExist, err := m.CheckUserIsExist(userID)
+func (c *UsersController) CreateNewUser(userID int) error {
+	c.mutex.Lock()
+	isUserExist, err := c.CheckUserIsExist(userID)
 	if err == nil {
 		if !isUserExist {
-			err = m.repo.AddNewUser(userID)
+			err = c.repo.AddNewUser(userID)
 		} else {
 			err = UserIsExistErr
 		}
 	}
-	m.mutex.Unlock()
+	c.mutex.Unlock()
 	return err
 }
 
-func (m *UsersController) CheckBalance(userID int) (float64, error) {
-	return m.repo.GetCurrentBalance(userID)
+func (c *UsersController) CheckBalance(userID int) (float64, error) {
+	return c.repo.GetCurrentBalance(userID)
 }
 
-func (m *UsersController) CheckAbleToBuyService(userID int, servicePrice float64) (bool, error) {
+func (c *UsersController) CheckAbleToBuyService(userID int, servicePrice float64) (bool, error) {
 	var result bool
-	balance, err := m.repo.GetCurrentBalance(userID)
+	balance, err := c.repo.GetCurrentBalance(userID)
 	if err == nil {
 		if servicePrice <= balance {
 			result = true
@@ -56,25 +56,25 @@ func (m *UsersController) CheckAbleToBuyService(userID int, servicePrice float64
 	return result, err
 }
 
-func (m *UsersController) DonateMoney(userID int, value float64) (err error) {
-	m.mutex.Lock()
+func (c *UsersController) DonateMoney(userID int, value float64) (err error) {
+	c.mutex.Lock()
 	if value >= 0 {
-		err = m.repo.ChangeBalance(userID, value)
+		err = c.repo.ChangeBalance(userID, value)
 	} else {
 		err = NegValueError
 	}
-	m.mutex.Unlock()
+	c.mutex.Unlock()
 	return err
 }
 
-func (m *UsersController) SpendMoney(userID int, value float64) error {
-	m.mutex.Lock()
-	canSpendMoney, err := m.CheckAbleToBuyService(userID, value)
+func (c *UsersController) SpendMoney(userID int, value float64) error {
+	c.mutex.Lock()
+	canSpendMoney, err := c.CheckAbleToBuyService(userID, value)
 	if err == nil && canSpendMoney {
-		err = m.repo.ChangeBalance(userID, -value)
+		err = c.repo.ChangeBalance(userID, -value)
 	} else {
 		err = NotEnoughMoneyErr
 	}
-	m.mutex.Unlock()
+	c.mutex.Unlock()
 	return err
 }
