@@ -27,4 +27,4 @@ create table if not exists transactions
     created_at datetime,
     action_comments varchar(255),
     add_comments varchar(255)
-)
+);
