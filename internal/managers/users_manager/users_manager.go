@@ -10,7 +10,7 @@ type UsersManager struct {
 	transactionsController tc.TransactionsControllerInterface
 }
 
-func CreateNewUsersManager(usersController users_controller.UsersControllerInterface,
+func CreateUsersManager(usersController users_controller.UsersControllerInterface,
 	transactionsController tc.TransactionsControllerInterface) *UsersManager {
 	return &UsersManager{
 		usersController:        usersController,

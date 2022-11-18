@@ -1,20 +1,23 @@
 package users_controller
 
-import "sync"
+import (
+	"AvitoInternship/internal/repositories/users_repository"
+	"sync"
+)
 
 type UsersController struct {
 	mutex sync.RWMutex
-	repo  users_repo.UsersRepoInterface
+	repo  users_repository.UsersRepoInterface
 }
 
-func CreateNewUsersController(repo users_repo.UsersRepoInterface) *UsersController {
+func CreateUsersController(repo users_repository.UsersRepoInterface) *UsersController {
 	return &UsersController{mutex: sync.RWMutex{}, repo: repo}
 }
 
 func (m *UsersController) CheckUserIsExist(userID int) (result bool, err error) {
-	_, isUserExistErr := m.repo.GetCurrentAmount(userID)
+	_, isUserExistErr := m.repo.GetCurrentBalance(userID)
 	switch isUserExistErr {
-	case users_repo.UserNotExist:
+	case users_repository.UserNotExist:
 		result = false
 	case nil:
 		result = true
@@ -39,12 +42,12 @@ func (m *UsersController) CreateNewUser(userID int) error {
 }
 
 func (m *UsersController) CheckBalance(userID int) (float64, error) {
-	return m.repo.GetCurrentAmount(userID)
+	return m.repo.GetCurrentBalance(userID)
 }
 
 func (m *UsersController) CheckAbleToBuyService(userID int, servicePrice float64) (bool, error) {
 	var result bool
-	balance, err := m.repo.GetCurrentAmount(userID)
+	balance, err := m.repo.GetCurrentBalance(userID)
 	if err == nil {
 		if servicePrice <= balance {
 			result = true
@@ -56,7 +59,7 @@ func (m *UsersController) CheckAbleToBuyService(userID int, servicePrice float64
 func (m *UsersController) DonateMoney(userID int, value float64) (err error) {
 	m.mutex.Lock()
 	if value >= 0 {
-		err = m.repo.ChangeAmount(userID, value)
+		err = m.repo.ChangeBalance(userID, value)
 	} else {
 		err = NegValueError
 	}
@@ -68,7 +71,7 @@ func (m *UsersController) SpendMoney(userID int, value float64) error {
 	m.mutex.Lock()
 	canSpendMoney, err := m.CheckAbleToBuyService(userID, value)
 	if err == nil && canSpendMoney {
-		err = m.repo.ChangeAmount(userID, -value)
+		err = m.repo.ChangeBalance(userID, -value)
 	} else {
 		err = NotEnoughMoneyErr
 	}
