@@ -10,6 +10,7 @@ import (
 	"AvitoInternship/internal/managers/orders_manager"
 	"AvitoInternship/internal/managers/users_manager"
 
+	"AvitoInternship/internal/handlers/reports_handler"
 	"AvitoInternship/internal/handlers/services_handler"
 	"AvitoInternship/internal/handlers/users_handler"
 
