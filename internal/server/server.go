@@ -44,7 +44,7 @@ func (s *Server) Start() error {
 	reportsHandler := reports_handler.CreateReportHandler(reportsManager)
 
 	router.HandleFunc("/users", usersHandler.GetBalance).Methods("GET")
-	router.HandleFunc("/users/return", usersHandler.ReturnBalance).Methods("POST")
+	router.HandleFunc("/users/add", usersHandler.AddBalance).Methods("POST")
 	router.HandleFunc("/transfer", usersHandler.Transfer).Methods("POST")
 
 	router.HandleFunc("/services/reserve", servicesHandler.ReserveService).Methods("POST")
