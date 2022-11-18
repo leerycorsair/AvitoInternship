@@ -1,0 +1,7 @@
+start_port = ":8080"
+[server]
+host = "localhost"
+port = "5432"
+database = "application_db"
+user = "root"
+password = "12345678"
