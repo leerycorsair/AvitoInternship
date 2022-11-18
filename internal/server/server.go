@@ -4,6 +4,7 @@ import (
 	"AvitoInternship/config"
 
 	"AvitoInternship/internal/controllers/orders_controller"
+	"AvitoInternship/internal/controllers/transactions_controller"
 	"AvitoInternship/internal/controllers/users_controller"
 
 	"AvitoInternship/internal/managers/orders_manager"
@@ -13,10 +14,12 @@ import (
 	"AvitoInternship/internal/handlers/users_handler"
 
 	"AvitoInternship/internal/repositories/orders_repository"
+	"AvitoInternship/internal/repositories/transactions_repository"
 	"AvitoInternship/internal/repositories/users_repository"
 
 	"AvitoInternship/internal/middleware"
 	"AvitoInternship/internal/tools"
+
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -42,11 +45,11 @@ func (s *Server) Start() error {
 
 	usersRepo := users_repository.CreateUsersRepo(usersDB)
 	ordersRepo := orders_repository.CreateOrdersRepo(ordersDB)
-	transactionsRepo := transactions_repo.CreateTransactionsRepo(transactionsDB)
+	transactionsRepo := transactions_repository.CreateTransactionsRepo(transactionsDB)
 
 	usersController := users_controller.CreateUsersController(usersRepo)
 	ordersController := orders_controller.CreateOrdersController(ordersRepo)
-	transactionsController := transactions_controller.CreateTransactionController(transactionsRepo)
+	transactionsController := transactions_controller.CreateTransactionsController(transactionsRepo)
 
 	usersManager := users_manager.CreateUsersManager(usersController, transactionsController)
 	ordersManager := orders_manager.CreateOrdersManager(usersController, ordersController, transactionsController)
