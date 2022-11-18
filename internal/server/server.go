@@ -49,7 +49,7 @@ func (s *Server) Start() error {
 
 	router.HandleFunc("/services/reserve", servicesHandler.ReserveService).Methods("POST")
 	router.HandleFunc("/services/accept", servicesHandler.AcceptService).Methods("POST")
-	router.HandleFunc("/services/cancel", servicesHandler.RefuseService).Methods("POST")
+	router.HandleFunc("/services/cancel", servicesHandler.CancelService).Methods("POST")
 
 	router.HandleFunc("/reports/users", reportsHandler.GetUserReport).Methods("GET")
 	router.HandleFunc("/reports/finances", reportsHandler.GetFinanceReport).Methods("GET")
