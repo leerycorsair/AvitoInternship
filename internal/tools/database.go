@@ -1,7 +1,7 @@
 package tools
 
 import (
-	"AvitoIntership/config"
+	"AvitoInternship/config"
 	"database/sql"
 	"fmt"
 

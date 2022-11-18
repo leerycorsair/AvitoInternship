@@ -1,4 +1,4 @@
-module AvitoIntership
+module AvitoInternship
 
 go 1.19
 

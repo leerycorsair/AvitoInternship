@@ -1,9 +1,10 @@
 package server
 
 import (
-	"AvitoIntership/config"
-	"AvitoIntership/internal/middleware"
-	"AvitoIntership/internal/tools"
+	"AvitoInternship/config"
+	"AvitoInternship/internal/handlers/users_handler"
+	"AvitoInternship/internal/middleware"
+	"AvitoInternship/internal/tools"
 	"net/http"
 
 	"github.com/gorilla/mux"
